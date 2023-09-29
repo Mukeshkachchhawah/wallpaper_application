@@ -23,25 +23,15 @@ class WallcenoBloc extends Bloc<WallcenoEvent, WallcenoState> {
     }); */
 
   WallcenoBloc({required this.api_helper}) : super(WallcenoInitialState()) {
-    on<GetTradingWallpaper>((event, emit) async {
-      emit(WallcenoLodingState());
-      try {
-        var response =
-            await api_helper.getDataApi("${UrlApi.tradingURL}? per_page=40");
-        emit(WallcenoLodadeState(mdata: DataModal.fromjson(response)));
-      } catch (e) {
-        emit(WallcenoErrorState(errorMes: e.toString()));
-      }
-    });
-
     on<GetSearchWallper>((event, emit) async {
       emit(WallcenoLodingState());
-      var response = await api_helper
-          .getDataApi("${UrlApi.searchURL}?query=${event.query}&per_page=40&color=red");
+    
+      try {
+        var response = await api_helper.getDataApi(
+            "${UrlApi.searchURL}?query=${event.query}&per_page=40&color=${event.colorCode ?? ""}");
 
-      if (response != null) {
         emit(WallcenoLodadeState(mdata: DataModal.fromjson(response)));
-      } else {
+      } catch (e) {
         emit(WallcenoErrorState(errorMes: "Internet Error"));
       }
     });

@@ -24,7 +24,7 @@ class SeletColor{
 
 },
 {
-"name" : "Cyan",
+"name" : "00FFFF",
 "color" : Color(0xff00FFFF),
 
 },
@@ -35,7 +35,7 @@ class SeletColor{
 },
 
 {
-"name" : "DartBlue",
+"name" : "00FFFF",
 "color" : Color(0xff00008B),
 
 },

@@ -1,21 +1,21 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:wellceno_ui/bloc/wallceno_bloc.dart';
-import 'package:wellceno_ui/screens/wallpaper_home/wallpaper_screens.dart';
+import 'package:wellceno_ui/bloc_file/bloc/wallceno_bloc.dart';
 
-import '../../modal/datamodal.dart';
+import 'wallpaper_screens.dart';
+
+
 
 class Categori_Wallpaper extends StatefulWidget {
   String query;
-  
+  String? colorCode;
 
   Categori_Wallpaper({
     required this.query,
-    
+    this.colorCode,
   });
 
   @override
@@ -32,13 +32,13 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
 
     //// search wallpaper
     ////// widget.query == widget are paprent class
-    context.read<WallcenoBloc>().add(GetSearchWallper(query: widget.query));
+    context.read<WallcenoBloc>().add(
+        GetSearchWallper(query: widget.query, colorCode: widget.colorCode));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<WallcenoBloc, WallcenoState>(
+    return Scaffold(body: BlocBuilder<WallcenoBloc, WallcenoState>(
       builder: (context, state) {
         if (state is WallcenoLodingState) {
           return Center(
@@ -56,6 +56,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
               children: [
                 Text(
                   widget.query,
+                
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
@@ -75,7 +76,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
-                      childAspectRatio: 16 / 9),
+                      childAspectRatio: 9 / 16),
                   itemCount: state.mdata.photos!.length,
                   itemBuilder: (context, index) {
                     return InkWell(

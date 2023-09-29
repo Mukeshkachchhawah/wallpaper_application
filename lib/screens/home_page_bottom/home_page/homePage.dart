@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../custom_Widgets/title_widget.dart';
-import '../../image_List/image_list.dart';
-import '../wallpaper_home/best_of_month.dart';
-import '../wallpaper_home/categor_wallpaper.dart';
-import '../wallpaper_home/categories.dart';
-import '../wallpaper_home/color_tone.dart';
+import '../../../custom_Widgets/title_widget.dart';
+import '../../../image_List/image_list.dart';
+import '../../wallpaper_home/best_of_month.dart';
+import '../../wallpaper_home/categor_wallpaper.dart';
+import '../../wallpaper_home/categories.dart';
+import '../../wallpaper_home/color_tone.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var mediaQuer = GlobalKey<FormState>();
-  TextEditingController SearchController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
                       padding:
                           const EdgeInsets.only(left: 10, right: 10, top: 50),
                       child: TextField(
-                        controller: SearchController,
+                        controller: searchController,
                         onSubmitted: (value) {
                           print(value);
 
@@ -57,8 +57,7 @@ class _HomePageState extends State<HomePage> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             Categori_Wallpaper(
-                                          query: SearchController.text,
-                                         
+                                          query: searchController.text,
                                         ),
                                       ));
                                 },
@@ -71,13 +70,13 @@ class _HomePageState extends State<HomePage> {
                       title: 'Best Of the Month',
 
                       /// add list image name
-                      child: Best_Of_Month(),
+                      child: BestOfMonth(),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     TitleAndWidget(
-                        child: Color_Tone(), title: "The color tone"),
+                        child: Color_Tone(queryControllerl: searchController.text), title: "The color tone"),
                     SizedBox(
                       height: 20,
                     ),
@@ -108,13 +107,13 @@ class _HomePageState extends State<HomePage> {
                       title: 'Best Of the Month',
 
                       /// add list image name
-                      child: Best_Of_Month(),
+                      child: BestOfMonth(),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     TitleAndWidget(
-                        child: Color_Tone(), title: "The color tone"),
+                        child: Color_Tone(queryControllerl: searchController.text), title: "The color tone"),
                     SizedBox(
                       height: 20,
                     ),
@@ -126,4 +125,6 @@ class _HomePageState extends State<HomePage> {
           },
         ));
   }
+
+  
 }

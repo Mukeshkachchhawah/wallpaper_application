@@ -1,40 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wellceno_ui/bloc_file/bloc/wallceno_bloc.dart';
+import 'package:wellceno_ui/bloc_file/bloc2/bloc/tradingwallceno_bloc.dart';
 
-import '../../bloc/wallceno_bloc.dart';
 import 'wallpaper_screens.dart';
 
-class Best_Of_Month extends StatefulWidget {
+class BestOfMonth extends StatefulWidget {
   @override
-  State<Best_Of_Month> createState() => _Best_Of_MonthState();
+  State<BestOfMonth> createState() => _BestOfMonthState();
 }
 
-class _Best_Of_MonthState extends State<Best_Of_Month> {
+class _BestOfMonthState extends State<BestOfMonth> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<WallcenoBloc>().add(GetTradingWallpaper());
+    context.read<TradingwallcenoBloc>().add(GetTradingwallceno());
   }
 
   // List<dynamic> bestofmonth;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WallcenoBloc, WallcenoState>(
+
+
+    return BlocBuilder<TradingwallcenoBloc, TradingwallcenoState>(
       builder: (context, state) {
-        if (state is WallcenoLodingState) {
+        if (state is TradingwallcenoStateLoding) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is WallcenoErrorState) {
+        } else if (state is TradingwallcenoStateError) {
           return Center(
             child: Text(state.errorMes),
           );
-        } else if (state is WallcenoLodadeState) {
+        } else if (state is TradingwallcenoStateLodade) {
           return SizedBox(
-            height: 200,
+            height: 250,
             child: ListView.builder(
-              itemCount: state.mdata.photos!.length,
+              itemCount: state.myData.photos!.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return InkWell(
@@ -43,19 +46,18 @@ class _Best_Of_MonthState extends State<Best_Of_Month> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => WallpaperScreen(
-                              img: state.mdata.photos![index].src!.portrait!),
+                              img: state.myData.photos![index].src!.portrait!),
                         ));
                   },
                   child: Container(
                     margin: EdgeInsets.all(5),
-                    height: 200,
+                  
                     width: 180,
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: NetworkImage(
-                                state.mdata.photos![index].src!.portrait!),
+                                state.myData.photos![index].src!.portrait!),
                             fit: BoxFit.fill),
-                       
                         borderRadius: BorderRadius.circular(10)),
                   ),
                 );
@@ -66,5 +68,7 @@ class _Best_Of_MonthState extends State<Best_Of_Month> {
         return Container();
       },
     );
+  
+  
   }
 }
