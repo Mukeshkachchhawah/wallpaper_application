@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../custom_Widgets/title_widget.dart';
-import '../../../image_List/image_list.dart';
-import '../../wallpaper_home/best_of_month.dart';
-import '../../wallpaper_home/categor_wallpaper.dart';
-import '../../wallpaper_home/categories.dart';
-import '../../wallpaper_home/color_tone.dart';
+import '../../../../custom_Widgets/title_widget.dart';
+import '../../../../image_List/image_list.dart';
+import '../best_of_month.dart';
+import '../../../wallpaper_home/categor_wallpaper.dart';
+import '../categories.dart';
+import '../color_tone.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

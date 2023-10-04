@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wellceno_ui/bloc_file/bloc/wallceno_bloc.dart';
 import 'package:wellceno_ui/bloc_file/bloc2/bloc/tradingwallceno_bloc.dart';
 
-import 'wallpaper_screens.dart';
+import '../../wallpaper_home/wallpaper_screens.dart';
 
 class BestOfMonth extends StatefulWidget {
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'categor_wallpaper.dart';
-import '../../image_List/image_list.dart';
+import '../../wallpaper_home/categor_wallpaper.dart';
+import '../../../image_List/image_list.dart';
 
 class Categories extends StatelessWidget {
   var data = Constants.result;

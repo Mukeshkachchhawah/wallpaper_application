@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../image_List/image_list.dart';
-import 'categor_wallpaper.dart';
+import '../../../image_List/image_list.dart';
+import '../../wallpaper_home/categor_wallpaper.dart';
 
 class Color_Tone extends StatelessWidget {
-var queryControllerl;
+  var queryControllerl;
   Color_Tone({required this.queryControllerl});
   bool isSeletColor = false;
 
@@ -26,15 +26,13 @@ var queryControllerl;
                 onTap: () {
                   isSeletColor = true;
                   // print(queryController.text.toString());
-                  print("object");
+                  print("ontap click");
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => Categori_Wallpaper(
-                         
-                             query: queryControllerl.text.toString(),
-                             colorCode: SeletColor.colors[index]['name'],
-                            
+                              query: queryControllerl!.toString(),
+                              colorCode: SeletColor.colors[index]['name'],
                             )),
                   );
                 },

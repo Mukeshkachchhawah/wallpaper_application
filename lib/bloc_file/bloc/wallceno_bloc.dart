@@ -25,10 +25,12 @@ class WallcenoBloc extends Bloc<WallcenoEvent, WallcenoState> {
   WallcenoBloc({required this.api_helper}) : super(WallcenoInitialState()) {
     on<GetSearchWallper>((event, emit) async {
       emit(WallcenoLodingState());
-    
+
       try {
+        print(
+            "${UrlApi.searchURL}?query=${event.query}&per_page=40&color=${event.colorCode ?? ""}&page=${event.pageNo ?? 1}");
         var response = await api_helper.getDataApi(
-            "${UrlApi.searchURL}?query=${event.query}&per_page=40&color=${event.colorCode ?? ""}");
+            "${UrlApi.searchURL}?query=${event.query}&per_page=40&color=${event.colorCode ?? ""}&page=${event.pageNo ?? 1}");
 
         emit(WallcenoLodadeState(mdata: DataModal.fromjson(response)));
       } catch (e) {
