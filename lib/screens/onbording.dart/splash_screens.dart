@@ -16,7 +16,7 @@ class _SplashScreensState extends State<SplashScreens> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 5), () {
-      Navigator.push(
+      Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => BottomBar(),
