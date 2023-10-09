@@ -54,7 +54,7 @@ class WallpaperScreen extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.8),
                 ),
                 CustomButton(
-                  ontap: () {},
+                  ontap: setWallpaper,
                   title: "Apply",
                   icon: Icons.brush,
                   color: Colors.blue.withOpacity(0.9),
@@ -70,6 +70,7 @@ class WallpaperScreen extends StatelessWidget {
     );
   }
 
+  /// download wallpaper
   void downloadWallpaepr() async {
     /// wallapaper background img
     ///  then await me value lekar aayega futere me
@@ -78,6 +79,7 @@ class WallpaperScreen extends StatelessWidget {
     });
   }
 
+  /// set mobile screes wallpaper
   void setWallpaper() {
     var stremProgress = Wallpaper.imageDownloadProgress(img);
 

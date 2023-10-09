@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:wellceno_ui/screens/bottombar.dart';
 
-class SplaceScreens extends StatefulWidget {
-  const SplaceScreens({super.key});
+class SplashScreens extends StatefulWidget {
+  const SplashScreens({super.key});
 
   @override
-  State<SplaceScreens> createState() => _SplaceScreensState();
+  State<SplashScreens> createState() => _SplashScreensState();
 }
 
-class _SplaceScreensState extends State<SplaceScreens> {
+class _SplashScreensState extends State<SplashScreens> {
   @override
   void initState() {
     // TODO: implement initState

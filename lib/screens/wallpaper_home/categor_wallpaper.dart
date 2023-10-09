@@ -30,6 +30,8 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    /// pagination
     mController = ScrollController()
       ..addListener(() {
         if (mController.position.pixels ==
@@ -139,6 +141,20 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
                             image: NetworkImage(allData[index].src!.portrait!),
                             fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(10)),
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Center(
+                            child: Icon(Icons.favorite_border),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               },
