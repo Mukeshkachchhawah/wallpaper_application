@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-Widget mListTile(VoidCallback onTap) {
+Widget mListTile(
+    VoidCallback onTap, String text, Icon ledingIcon, Icon tralingIcon) {
   return ListTile(
     onTap: onTap,
-    leading: Icon(Icons.person),
-    title: Text("User Name"),
-    trailing: Icon(Icons.edit),
+    leading: ledingIcon,
+    title: Text(text),
+    trailing: tralingIcon,
   );
 }
 
