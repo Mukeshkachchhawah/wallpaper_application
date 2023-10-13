@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:wellceno_ui/screens/home_page_bottom/wallpaper_profile/wallpaper_setting.dart';
 
 import 'home_page_bottom/home_page/home/homePage.dart';
 import 'home_page_bottom/savepage/savepage.dart';
-import 'home_page_bottom/user_account/userpage.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -17,7 +17,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> _pages = [
     HomePage(),
     SavePage(),
-    UserPage(),
+    WallpaperSetting(),
   ];
   @override
   Widget build(BuildContext context) {

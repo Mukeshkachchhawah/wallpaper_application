@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: unused_import
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:wellceno_ui/bloc_file/bloc/wallceno_bloc.dart';
 import 'package:wellceno_ui/modal/photos/photos_modal.dart';
+// ignore: unused_import
+import 'package:wellceno_ui/screens/home_page_bottom/savepage/savepage.dart';
+// ignore: duplicate_import
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'wallpaper_screens.dart';
 
@@ -23,16 +29,17 @@ class Categori_Wallpaper extends StatefulWidget {
 class _Categori_WallpaperState extends State<Categori_Wallpaper> {
   @override
   late ScrollController mController;
-  var totalResults = 0;
+  int? mtotalResults;
   int pageNo = 1;
   List<Photo_Modal> allData = [];
 
   void initState() {
     // TODO: implement initState
     super.initState();
+    PageUpdate();
 
     /// pagination
-    mController = ScrollController()
+    /*  mController = ScrollController()
       ..addListener(() {
         if (mController.position.pixels ==
             mController.position.maxScrollExtent) {
@@ -43,7 +50,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
               colorCode: widget.colorCode,
               pageNo: pageNo));
         }
-      });
+      }); */
     //// trading wallpaper
     /// context.read<WallcenoBloc>().add(GetTradingWallpaper());
 
@@ -53,6 +60,33 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
           query: widget.query,
           colorCode: widget.colorCode,
         ));
+  }
+
+  /// page loding 154 image hai divid by 40 image par page
+  /// total 4 page
+  ///
+  void PageUpdate() {
+    mController = ScrollController()
+      ..addListener(() {
+        if (mController.position.pixels ==
+            mController.position.maxScrollExtent) {
+          var totalpage;
+          if (mtotalResults != null) {
+            mtotalResults! % 40 == 0
+                ? totalpage == mtotalResults! / 40
+                : totalpage = (mtotalResults! / 40) + 1;
+            if (pageNo <= totalpage) {
+              print("End of Page ${pageNo}");
+              pageNo++;
+            }
+          }
+
+          context.read<WallcenoBloc>().add(GetSearchWallper(
+              query: widget.query,
+              colorCode: widget.colorCode,
+              pageNo: pageNo));
+        }
+      });
   }
 
   @override
@@ -70,7 +104,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text("Error : ${state.errorMes}")));
         } else if (state is WallcenoLodadeState) {
-          totalResults = state.mdata.total_results!;
+          mtotalResults = state.mdata.total_results!;
           allData.addAll(state.mdata.photos!);
           setState(() {});
         }
@@ -88,7 +122,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
               height: 5,
             ),
             Text(
-              "$totalResults Wallpaper available",
+              "$mtotalResults Wallpaper available",
               // "${state.mdata.total_results} wallpaper available",
               style: TextStyle(fontSize: 18),
             ),
@@ -115,7 +149,6 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
                     child: CircularProgressIndicator(),
                   );
                 }
-
 // // add ++ 20 abo image
                 if (index == allData.length + 1) {
                   return Center(
@@ -141,20 +174,6 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
                             image: NetworkImage(allData[index].src!.portrait!),
                             fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(10)),
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Center(
-                            child: Icon(Icons.favorite_border),
-                          ),
-                        )
-                      ],
-                    ),
                   ),
                 );
               },

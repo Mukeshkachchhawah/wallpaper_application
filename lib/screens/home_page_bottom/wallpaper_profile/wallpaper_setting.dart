@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wellceno_ui/custom_Widgets/ui_helper.dart';
 
-class UserPage extends StatelessWidget {
-  const UserPage({super.key});
+class WallpaperSetting extends StatelessWidget {
+  const WallpaperSetting({super.key});
 
   @override
   Widget build(BuildContext context) {

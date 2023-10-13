@@ -45,6 +45,8 @@ class Categories extends StatelessWidget {
               ),
             ),
           );
+     
+     
         },
       ),
     );
