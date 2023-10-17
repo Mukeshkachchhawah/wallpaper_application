@@ -3,6 +3,8 @@ import 'package:gallery_saver/gallery_saver.dart';
 import 'package:wallpaper/wallpaper.dart';
 // ignore: unused_import
 import 'package:wellceno_ui/custom_Widgets/ui_helper.dart';
+import 'package:wellceno_ui/favorit_wallpaper.dart';
+import 'package:wellceno_ui/modal/photos/photos_modal.dart';
 
 import '../../custom_Widgets/custombutton.dart';
 
@@ -20,6 +22,7 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
   double? mHeidth;
 
   double? mwidth;
+  bool isfav = false;
 
   @override
   Widget build(BuildContext context) {
@@ -97,16 +100,7 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
         ),
         child: Column(children: [
           Padding(
-            padding: const EdgeInsets.all(30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(Icons.favorite_sharp),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 600),
+            padding: const EdgeInsets.only(top: 750),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -126,9 +120,20 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
                   icon: Icons.brush,
                 ),
                 CustomButton(
-                  ontap: () {},
+                  ontap: () {
+                    setState(() {
+                      isfav = !isfav;
+                    });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FavoritWallpaper(
+                              img:
+                                  "https://png.pngtree.com/thumb_back/fh260/background/20210727/pngtree-cute-watercolor-fruit-mobile-wallpaper-image_752110.jpg"),
+                        ));
+                  },
                   title: "Favorite",
-                  icon: Icons.favorite_border,
+                  icon: isfav ? Icons.favorite_border : Icons.add,
                 ),
               ],
             ),
