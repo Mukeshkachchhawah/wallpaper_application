@@ -39,7 +39,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
     PageUpdate();
 
     /// pagination
-    /*  mController = ScrollController()
+    mController = ScrollController()
       ..addListener(() {
         if (mController.position.pixels ==
             mController.position.maxScrollExtent) {
@@ -50,7 +50,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
               colorCode: widget.colorCode,
               pageNo: pageNo));
         }
-      }); */
+      });
     //// trading wallpaper
     /// context.read<WallcenoBloc>().add(GetTradingWallpaper());
 
@@ -167,7 +167,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
                         ));
                   },
                   child: Container(
-                    height: 100,
+                    height: index%2==1? 300: 200,
                     width: 100,
                     decoration: BoxDecoration(
                         image: DecorationImage(
