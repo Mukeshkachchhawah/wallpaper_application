@@ -32,7 +32,7 @@ class _SplashScreensState extends State<SplashScreens> {
           return Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("lib/assets/image/lion-king.jpg"),
+                      image: AssetImage("assets/image/lion-king.jpg"),
                       fit: BoxFit.cover)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,

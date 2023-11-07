@@ -36,10 +36,9 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    PageUpdate();
-
+   
     /// pagination
-    mController = ScrollController()
+  /*   mController = ScrollController()
       ..addListener(() {
         if (mController.position.pixels ==
             mController.position.maxScrollExtent) {
@@ -50,7 +49,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
               colorCode: widget.colorCode,
               pageNo: pageNo));
         }
-      });
+      }); */
     //// trading wallpaper
     /// context.read<WallcenoBloc>().add(GetTradingWallpaper());
 
@@ -59,7 +58,10 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
     context.read<WallcenoBloc>().add(GetSearchWallper(
           query: widget.query,
           colorCode: widget.colorCode,
+          page: pageNo
         ));
+         PageUpdate();
+
   }
 
   /// page loding 154 image hai divid by 40 image par page
@@ -70,21 +72,23 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
       ..addListener(() {
         if (mController.position.pixels ==
             mController.position.maxScrollExtent) {
-          var totalpage;
+          num totalpage;
           if (mtotalResults != null) {
             mtotalResults! % 40 == 0
-                ? totalpage == mtotalResults! / 40
+                ? totalpage = mtotalResults! / 40
                 : totalpage = (mtotalResults! / 40) + 1;
-            if (pageNo <= totalpage) {
+            if (pageNo < totalpage) {
               print("End of Page ${pageNo}");
+            //  SnackBar(content: Text("End Of Page${pageNo}"));
               pageNo++;
+              context.read<WallcenoBloc>().add(GetSearchWallper(
+              query: widget.query,
+              colorCode: widget.colorCode,
+              page: pageNo));
             }
           }
 
-          context.read<WallcenoBloc>().add(GetSearchWallper(
-              query: widget.query,
-              colorCode: widget.colorCode,
-              pageNo: pageNo));
+          
         }
       });
   }
@@ -105,6 +109,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
               SnackBar(content: Text("Error : ${state.errorMes}")));
         } else if (state is WallcenoLodadeState) {
           mtotalResults = state.mdata.total_results!;
+          allData+= state.mdata.photos!;
           allData.addAll(state.mdata.photos!);
           setState(() {});
         }
@@ -167,7 +172,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
                         ));
                   },
                   child: Container(
-                    height: index%2==1? 300: 200,
+                    height: index % 2 == 1 ? 300 : 200,
                     width: 100,
                     decoration: BoxDecoration(
                         image: DecorationImage(
