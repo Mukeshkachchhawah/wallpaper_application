@@ -7,6 +7,7 @@ import 'package:wellceno_ui/modal/datamodal.dart';
 part 'wallceno_event.dart';
 part 'wallceno_state.dart';
 
+//// search wallpaper bloc
 class WallcenoBloc extends Bloc<WallcenoEvent, WallcenoState> {
   Api_Helper api_helper;
 /*   WallcenoBloc({required this.api_helper}) : super(WallcenoInitialState()) {

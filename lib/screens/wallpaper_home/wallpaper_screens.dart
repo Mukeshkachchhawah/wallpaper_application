@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:wallpaper/wallpaper.dart';
+import 'package:wellceno_ui/bloc_file/seved_wallpaper/seved_wallpaper_bloc.dart';
 // ignore: unused_import
 import 'package:wellceno_ui/custom_Widgets/ui_helper.dart';
 import 'package:wellceno_ui/favorit_wallpaper.dart';
@@ -124,13 +126,15 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
                     setState(() {
                       isfav = !isfav;
                     });
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FavoritWallpaper(
-                              img:
-                                  "https://png.pngtree.com/thumb_back/fh260/background/20210727/pngtree-cute-watercolor-fruit-mobile-wallpaper-image_752110.jpg"),
-                        ));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => FavoritWallpaper(
+                    //           img:
+                    //               "https://png.pngtree.com/thumb_back/fh260/background/20210727/pngtree-cute-watercolor-fruit-mobile-wallpaper-image_752110.jpg"),
+                    //     ));
+
+                    //  context.read<SevedWallpaperBloc>().add(FavoriteWallpaper(img: '', id: id.toString()));
                   },
                   title: "Favorite",
                   icon: isfav ? Icons.favorite_border : Icons.add,
@@ -150,8 +154,17 @@ class _WallpaperScreenState extends State<WallpaperScreen> {
   void downloadWallpaepr() async {
     /// wallapaper background img
     ///  then await me value lekar aayega futere me
+
     GallerySaver.saveImage(widget.img).then((value) {
       print(value);
+
+      final snackBar = SnackBar(
+        content: const Text('image saved in gallery successfully'),
+      );
+
+      // Find the ScaffoldMessenger in the widget tree
+      // and use it to show a SnackBar.
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
   }
 

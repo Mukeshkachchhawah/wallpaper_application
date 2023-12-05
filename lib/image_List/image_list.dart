@@ -1,19 +1,5 @@
 import 'package:flutter/material.dart';
 
-// final List<String> bestofmonthImage = [
-//   "https://images.pexels.com/photos/719396/pexels-photo-719396.jpeg?cs=srgb&dl=pexels-gabriel-peter-719396.jpg&fm=jpg",
-//   "https://i.pinimg.com/originals/39/11/6c/39116c247669762f4ce72be4ce2b862e.jpg",
-//   "https://images.pexels.com/photos/13280776/pexels-photo-13280776.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-//   "https://i.pinimg.com/564x/4b/05/0c/4b050ca4fcf588eedc58aa6135f5eecf.jpg",
-//   "https://i.pinimg.com/736x/1a/47/3f/1a473f3c3cc2258a151980652fb2473d.jpg",
-//   "https://w0.peakpx.com/wallpaper/354/38/HD-wallpaper-by-the-lake-lake-moon-nature-sky-sunset-water-thumbnail.jpg",
-//   "https://images.unsplash.com/photo-1615572766543-06c21416eb05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZnVsbCUyMGhkJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww&w=1000&q=80",
-//   "https://omreels.in/wp-content/uploads/2022/07/kedarnath-wallpaper-hd-for-mobile-sm.jpg",
-//   "https://cdn.statusqueen.com/mobilewallpaper/thumbnail/tiger_mobile_wallpaper-1639.jpg",
-//   "https://wallpaper-house.com/data/out/6/wallpaper2you_82836.jpg",
-//   "https://i.pinimg.com/originals/e8/42/f7/e842f7d5f3813ba758b9f33ccb95e904.jpg"
-// ];
-
 /// home Screen Colors
 class SeletColor {
   static const List<Map<String, dynamic>> colors = [

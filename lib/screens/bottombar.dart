@@ -17,7 +17,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> _pages = [
     HomePage(),
     SavePage(),
-    WallpaperSetting(),
+    // WallpaperSetting(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,8 @@ class _BottomBarState extends State<BottomBar> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.grid_view_rounded), label: ""),
             BottomNavigationBarItem(
-                icon: Icon(Icons.file_download_outlined), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.perm_identity), label: "")
+                icon: Icon(Icons.favorite_border), label: ""),
+            // BottomNavigationBarItem(icon: Icon(Icons.perm_identity), label: "")
           ]),
     );
   }

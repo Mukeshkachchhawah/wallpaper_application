@@ -5,6 +5,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:wellceno_ui/bloc_file/bloc/wallceno_bloc.dart';
+import 'package:wellceno_ui/image_List/image_list.dart';
 import 'package:wellceno_ui/modal/photos/photos_modal.dart';
 // ignore: unused_import
 import 'package:wellceno_ui/screens/home_page_bottom/savepage/savepage.dart';
@@ -32,13 +33,14 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
   int? mtotalResults;
   int pageNo = 1;
   List<Photo_Modal> allData = [];
+  bool isSelectedColor = false;
 
   void initState() {
     // TODO: implement initState
     super.initState();
-   
+
     /// pagination
-  /*   mController = ScrollController()
+    /*   mController = ScrollController()
       ..addListener(() {
         if (mController.position.pixels ==
             mController.position.maxScrollExtent) {
@@ -56,12 +58,8 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
     //// search wallpaper
     ////// widget.query == widget are paprent class
     context.read<WallcenoBloc>().add(GetSearchWallper(
-          query: widget.query,
-          colorCode: widget.colorCode,
-          page: pageNo
-        ));
-         PageUpdate();
-
+        query: widget.query, colorCode: widget.colorCode, page: pageNo));
+    PageUpdate();
   }
 
   /// page loding 154 image hai divid by 40 image par page
@@ -79,22 +77,21 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
                 : totalpage = (mtotalResults! / 40) + 1;
             if (pageNo < totalpage) {
               print("End of Page ${pageNo}");
-            //  SnackBar(content: Text("End Of Page${pageNo}"));
+              SnackBar(content: Text("End Of Page${pageNo}"));
               pageNo++;
               context.read<WallcenoBloc>().add(GetSearchWallper(
-              query: widget.query,
-              colorCode: widget.colorCode,
-              page: pageNo));
+                  query: widget.query,
+                  colorCode: widget.colorCode,
+                  page: pageNo));
             }
           }
-
-          
         }
       });
   }
 
   @override
   Widget build(BuildContext context) {
+    var color = SeletColor.colors;
     return Scaffold(
 
         /// BlocLister
@@ -109,7 +106,7 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
               SnackBar(content: Text("Error : ${state.errorMes}")));
         } else if (state is WallcenoLodadeState) {
           mtotalResults = state.mdata.total_results!;
-          allData+= state.mdata.photos!;
+          //allData+= state.mdata.photos!;
           allData.addAll(state.mdata.photos!);
           setState(() {});
         }
@@ -133,6 +130,49 @@ class _Categori_WallpaperState extends State<Categori_Wallpaper> {
             ),
             SizedBox(
               height: 10,
+            ),
+
+            
+            SizedBox(
+                height: 60,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: color.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 25),
+                      child: InkWell(
+                        onTap: () {
+                          isSelectedColor = true;
+
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Categori_Wallpaper(
+                                  query: widget.query,
+                                  colorCode: color[index]["name"],
+                                ),
+                              ));
+                        },
+                        child: Container(
+                          width: 60,
+
+                          // width: media.orientation == Orientation.portrait
+                          //     ? media.size.width * .1
+                          //     : media.size.width * 0.05,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: color[index]["color"],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                )),
+        
+        
+            SizedBox(
+              height: 20,
             ),
             Expanded(
                 child: GridView.builder(

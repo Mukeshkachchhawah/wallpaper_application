@@ -2,9 +2,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MyDBHelper {
-  var WallPaper_TABLE = "note";
-  var WallpaperIndex = "index";
-  var Wallpaper = "image";
+  var Row_WallPaper_TABLE = "Wallpaper_Saved";
+  var Colum_Wallpaper_ID = "wallpaper_id";
+  var Colum_Wallpaper_Image = "img";
 
   Future<Database> openDB() async {
     var mDirectory = await getApplicationDocumentsDirectory();
@@ -13,21 +13,22 @@ class MyDBHelper {
 
     return await openDatabase(dbpath, version: 1, onCreate: (db, version) {
       var createTableQuery =
-          "create table $WallPaper_TABLE ($WallpaperIndex integer primary key autoincrement, $Wallpaper text)";
+          "CREATE TABLE $Row_WallPaper_TABLE ($Colum_Wallpaper_ID INTEGER PRIMARY KEY AUTOINCREMENT, $Colum_Wallpaper_Image text)";
       db.execute(createTableQuery);
     });
   }
 
-  Future<bool> addNote(String image) async {
+  Future<bool> addNote({required String id, required String img}) async {
     var db = await openDB();
 
-    var Check = await db.insert(WallPaper_TABLE, {Wallpaper: image});
-    return Check > 0;
+    var check = await db.insert(Row_WallPaper_TABLE,
+        {Colum_Wallpaper_ID: id, Colum_Wallpaper_Image: img});
+    return check > 0;
   }
 
   Future<List<Map<String, dynamic>>> fetchAllNotes() async {
     var db = await openDB();
-    List<Map<String, dynamic>> notes = await db.query(WallPaper_TABLE);
+    List<Map<String, dynamic>> notes = await db.query(Row_WallPaper_TABLE);
     return notes;
   }
 

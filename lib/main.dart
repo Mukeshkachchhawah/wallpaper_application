@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wellceno_ui/bloc_file/bloc/wallceno_bloc.dart';
 import 'package:wellceno_ui/bloc_file/bloc2/bloc/tradingwallceno_bloc.dart';
+import 'package:wellceno_ui/bloc_file/seved_wallpaper/seved_wallpaper_bloc.dart';
+import 'package:wellceno_ui/db_helper/db_helper.dart';
 
 import 'api_helper/api_helper.dart';
 import 'screens/onbording.dart/splash_screens.dart';
@@ -12,7 +14,9 @@ void main() {
       create: (context) => WallcenoBloc(api_helper: Api_Helper()),
     ),
     BlocProvider(
-        create: (context) => TradingwallcenoBloc(api_helper: Api_Helper()))
+        create: (context) => TradingwallcenoBloc(api_helper: Api_Helper())),
+    BlocProvider(
+        create: (context) => SevedWallpaperBloc(myDBHelper: MyDBHelper()))
   ], child: MyApp()));
 }
 
